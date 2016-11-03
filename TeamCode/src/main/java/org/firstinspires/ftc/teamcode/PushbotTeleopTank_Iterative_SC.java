@@ -74,8 +74,6 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        // don't automatically clear telemetry messages
-        telemetry.setAutoClear(false);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
     }
