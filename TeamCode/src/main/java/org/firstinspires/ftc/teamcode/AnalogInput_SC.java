@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.hardware.HardwareDevice;
 public class AnalogInput_SC implements HardwareDevice {
 
   private AnalogInputController controller = null;
-  private int channel = -1;
+  private int channel = 0;
 
   /**
    * Constructor
