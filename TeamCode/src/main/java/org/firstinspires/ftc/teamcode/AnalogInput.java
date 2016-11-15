@@ -36,10 +36,10 @@ import com.qualcomm.robotcore.hardware.HardwareDevice;
 /**
  * Control a single analog device
  */
-public class AnalogInput_SC implements HardwareDevice {
+public class AnalogInput implements HardwareDevice {
 
   private AnalogInputController controller = null;
-  private int channel = 0;
+  private int channel = -1;
 
   /**
    * Constructor
@@ -47,7 +47,7 @@ public class AnalogInput_SC implements HardwareDevice {
    * @param controller AnalogInput controller this channel is attached to
    * @param channel channel on the analog input controller
    */
-  public AnalogInput_SC(AnalogInputController controller, int channel) {
+  public AnalogInput(AnalogInputController controller, int channel) {
     this.controller = controller;
     this.channel = channel;
   }

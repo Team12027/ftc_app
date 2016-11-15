@@ -32,58 +32,56 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.LightSensor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwareK9bot;
 
 /**
- * This file illustrates the concept of driving up to a line and then stopping.
- * It uses the common Pushbot hardware class to define the drive on the robot.
+ * This OpMode uses the common HardwareK9bot class to define the devices on the robot.
+ * All device access is managed through the HardwareK9bot class. (See this class for device names)
  * The code is structured as a LinearOpMode
  *
- * The code shows using two different light sensors:
- *   The Primary sensor shown in this code is a legacy NXT Light sensor (called "sensor_light")
- *   Alternative "commented out" code uses a MR Optical Distance Sensor (called "sensor_ods")
- *   instead of the LEGO sensor.  Chose to use one sensor or the other.
+ * This particular OpMode executes a basic Tank Drive Teleop for the K9 bot
+ * It raises and lowers the arm using the Gampad Y and A buttons respectively.
+ * It also opens and closes the claw slowly using the X and B buttons.
  *
- *   Setting the correct WHITE_THRESHOLD value is key to stopping correctly.
- *   This should be set half way between the light and dark values.
- *   These values can be read on the screen once the OpMode has been INIT, but before it is STARTED.
- *   Move the senso on asnd off the white line and not the min and max readings.
- *   Edit this code to make WHITE_THRESHOLD half way between the min and max.
+ * Note: the configuration of the servos is such that
+ * as the arm servo approaches 0, the arm position moves up (away from the floor).
+ * Also, as the claw servo approaches 0, the claw opens up (drops the game element).
  *
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="SC: Auto Pixy Cam Test", group="Pushbot")
+@TeleOp(name="PixyCam Tester", group="K9bot")
 //@Disabled
-public class PushbotAutoDriveToLine_Linear_SC extends LinearOpMode {
+public class PixyCamTester extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot         robot   = new HardwarePushbot();
+    HardwarePushbot_SC   robot           = new HardwarePushbot_SC();
 
     @Override
     public void runOpMode() {
 
-        /* Initialize the drive system variables.
+        /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
 
-        AnalogInput_SC analogInput = new AnalogInput_SC(null, 0);
-
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Ready to run");    //
+        telemetry.addData("Say", "Hello Driver");    //
         telemetry.update();
 
-        while (opModeIsActive()) {
-            telemetry.addData("Voltage",  analogInput.getVoltage());
-            telemetry.update();
-        }
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
 
+        // run until the end of the match (driver presses STOP)
+        while (opModeIsActive()) {
+            AnalogInput_SC = new AnalogInputController_SC();
+            robot.waitForTick(40);
+        }
     }
 }
