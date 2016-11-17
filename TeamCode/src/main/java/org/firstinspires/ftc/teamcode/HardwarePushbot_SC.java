@@ -29,6 +29,8 @@ public class HardwarePushbot_SC
     public DcMotor  armMotor    = null;
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
+    //public AnalogInput pixy = null;
+    //public DigitalChannel pixyDigital = null;
 
     public static final double MID_SERVO       =  0.5 ;
     public static final double ARM_UP_POWER    =  0.9 ;
@@ -52,6 +54,8 @@ public class HardwarePushbot_SC
         leftMotor   = hwMap.dcMotor.get("left_drive");
         rightMotor  = hwMap.dcMotor.get("right_drive");
         armMotor    = hwMap.dcMotor.get("left_arm");
+        //pixy = hwMap.analogInput.get("pixy");
+        //pixyDigital = hwMap.digitalChannel.get("pixy-digital");
         leftMotor.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightMotor.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
 

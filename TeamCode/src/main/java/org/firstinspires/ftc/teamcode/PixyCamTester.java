@@ -36,6 +36,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DigitalChannelController;
+import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.AnalogInputController;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwareK9bot;
 
@@ -71,6 +75,11 @@ public class PixyCamTester extends LinearOpMode {
          */
         robot.init(hardwareMap);
 
+        DigitalChannel pixy_digital = hardwareMap.get(DigitalChannel.class, "pixy-digital");
+        pixy_digital.setMode(DigitalChannelController.Mode.INPUT);
+
+        //AnalogInput ai = new AnalogInput(hardwareMap.get(AnalogInputController.class, "pixy"), 0);
+
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
         telemetry.update();
@@ -80,7 +89,10 @@ public class PixyCamTester extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            AnalogInput_SC = new AnalogInputController_SC();
+            //double voltage = ai.getVoltage();
+            //telemetry.addData("pixy", "%.2f", voltage);
+            telemetry.addData("digital", "%b", pixy_digital.getState());
+            telemetry.update();
             robot.waitForTick(40);
         }
     }
