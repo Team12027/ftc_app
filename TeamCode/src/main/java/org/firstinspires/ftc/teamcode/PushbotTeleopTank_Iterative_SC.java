@@ -37,7 +37,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+//import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.teamcode.HardwarePushbot_SC;
 
 /**
  * This file provides basic Telop driving for a Pushbot robot.
@@ -59,7 +60,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 public class PushbotTeleopTank_Iterative_SC extends OpMode{
 
     /* Declare OpMode members. */
-    HardwarePushbot robot       = new HardwarePushbot(); // use the class created to define a Pushbot's hardware
+    HardwarePushbot_SC robot       = new HardwarePushbot_SC(); // use the class created to define a Pushbot's hardware
                                                          // could also use HardwarePushbotMatrix class.
     double          clawOffset  = 0.0 ;                  // Servo mid position
     final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
@@ -107,10 +108,17 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
         robot.rightMotor.setPower(right);
 
         // Use gamepad left & right Bumpers to open and close the claw
-        if (gamepad1.right_bumper)
-            clawOffset += CLAW_SPEED;
-        else if (gamepad1.left_bumper)
-            clawOffset -= CLAW_SPEED;
+//        if (gamepad1.right_bumper)
+//            clawOffset += CLAW_SPEED;
+//        else if (gamepad1.left_bumper)
+//            clawOffset -= CLAW_SPEED;
+
+        if (gamepad2.left_bumper)
+            robot.liftMotor.setPower(robot.LIFT_UP_POWER);
+        else if (gamepad2.right_bumper)
+            robot.liftMotor.setPower(robot.LIFT_DOWN_POWER);
+        else
+            robot.liftMotor.setPower(0.0);
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         clawOffset = Range.clip(clawOffset, -0.5, 0.5);
@@ -118,9 +126,9 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
         robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
         // Use gamepad buttons to move the arm up (Y) and down (A)
-        if (gamepad1.y)
+        if (gamepad2.y)
             robot.armMotor.setPower(robot.ARM_UP_POWER);
-        else if (gamepad1.a)
+        else if (gamepad2.a)
             robot.armMotor.setPower(robot.ARM_DOWN_POWER);
         else
             robot.armMotor.setPower(0.0);
