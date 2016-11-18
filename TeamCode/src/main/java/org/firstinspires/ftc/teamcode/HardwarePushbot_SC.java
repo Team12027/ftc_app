@@ -37,7 +37,7 @@ public class HardwarePushbot_SC
     public static final double ARM_UP_POWER    =  0.9 ;
     public static final double ARM_DOWN_POWER  = -0.9 ;
     public static final double LIFT_UP_POWER = 0.9;
-    public static final double LIFT_DOWN_POWER = 0.9;
+    public static final double LIFT_DOWN_POWER = -0.9;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;

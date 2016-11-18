@@ -114,11 +114,11 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
 //            clawOffset -= CLAW_SPEED;
 
         if (gamepad2.left_bumper)
-            robot.liftMotor.setPower(robot.LIFT_UP_POWER);
+            robot.armMotor.setPower(robot.LIFT_UP_POWER);
         else if (gamepad2.right_bumper)
-            robot.liftMotor.setPower(robot.LIFT_DOWN_POWER);
+            robot.armMotor.setPower(robot.LIFT_DOWN_POWER);
         else
-            robot.liftMotor.setPower(0.0);
+            robot.armMotor.setPower(0.0);
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         clawOffset = Range.clip(clawOffset, -0.5, 0.5);
@@ -127,11 +127,11 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
 
         // Use gamepad buttons to move the arm up (Y) and down (A)
         if (gamepad2.y)
-            robot.armMotor.setPower(robot.ARM_UP_POWER);
+            robot.liftMotor.setPower(robot.ARM_UP_POWER);
         else if (gamepad2.a)
-            robot.armMotor.setPower(robot.ARM_DOWN_POWER);
+            robot.liftMotor.setPower(robot.ARM_DOWN_POWER);
         else
-            robot.armMotor.setPower(0.0);
+            robot.liftMotor.setPower(0.0);
 
         // Send telemetry message to signify robot running;
         telemetry.addData("claw",  "Offset = %.2f", clawOffset);
