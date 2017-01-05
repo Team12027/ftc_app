@@ -183,6 +183,7 @@ public class NewAutoBlue extends LinearOpMode {
             // Turn off RUN_TO_POSITION
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            sleep(15);
 
             //  sleep(250);   // optional pause after each move
         }

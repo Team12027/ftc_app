@@ -56,7 +56,7 @@ import org.firstinspires.ftc.teamcode.HardwarePushbot_SC;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="K9bot: Telop Tank", group="K9bot")
+@TeleOp(name="Teleop Tank", group="K9bot")
 @Disabled
 public class Teleop extends LinearOpMode {
 
