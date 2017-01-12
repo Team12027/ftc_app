@@ -56,14 +56,12 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name = "Beacon Auto Red", group = "Sensor")
-//@Disabled
+@TeleOp(name = "Beacon Auto Test", group = "Sensor")
 public class BeaconAutoRed extends LinearOpMode {
 
   ColorSensor colorSensor;    // Hardware Device Object
   /* Declare OpMode members. */
   HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware
-  private ElapsedTime runtime = new ElapsedTime();
 
   static final double     DRIVE_SPEED             = 0.6;
   static final double     TURN_SPEED              = 0.5;
@@ -73,9 +71,9 @@ public class BeaconAutoRed extends LinearOpMode {
   public void runOpMode() {
 
     /*
-         * Initialize the drive system variables.
-         * The init() method of the hardware class does all the work here
-         */
+     * Initialize the drive system variables.
+     * The init() method of the hardware class does all the work here
+     */
     robot.init(hardwareMap);
 
     // get a reference to our ColorSensor object.
@@ -95,8 +93,8 @@ public class BeaconAutoRed extends LinearOpMode {
       robot.leftMotor.setPower(DRIVE_SPEED);
       robot.leftMotor.setPower(DRIVE_SPEED);
 
-      // small delay to give the sensor some time
-      sleep(10);
+//      // small delay to give the sensor some time
+//      sleep(10);
 
       // if white line detected, stop driving and exit loop
       if (colorSensor.red() >= WHITE_THRESHOLD && colorSensor.green() >= WHITE_THRESHOLD && colorSensor.blue() >= WHITE_THRESHOLD) {

@@ -54,16 +54,12 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @TeleOp(name = "White Tape Color Sensor", group = "Sensor")
-//@Disabled
+
 public class WhiteTapeColorSensor extends LinearOpMode {
 
   ColorSensor colorSensor;    // Hardware Device Object
   @Override
   public void runOpMode() {
-
-    // get a reference to the RelativeLayout so we can change the background
-    // color of the Robot Controller app to match the hue detected by the RGB sensor.
-    final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(R.id.RelativeLayout);
 
     // get a reference to our ColorSensor object.
     colorSensor = hardwareMap.colorSensor.get("sensor_color");
@@ -77,6 +73,7 @@ public class WhiteTapeColorSensor extends LinearOpMode {
     // while the op mode is active, loop and read the RGB data.
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
     while (opModeIsActive()) {
+      colorSensor.enableLed(true);
 
       // send the info back to driver station using telemetry function.
       telemetry.addData("RGB Red  ", colorSensor.red());
