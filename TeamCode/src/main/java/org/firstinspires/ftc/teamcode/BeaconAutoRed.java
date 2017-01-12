@@ -90,11 +90,19 @@ public class BeaconAutoRed extends LinearOpMode {
     // while the op mode is active, loop and read the RGB data.
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
     while (opModeIsActive()) {
+
+      // drive forward
       robot.leftMotor.setPower(DRIVE_SPEED);
       robot.leftMotor.setPower(DRIVE_SPEED);
+
+      // small delay to give the sensor some time
+      sleep(10);
+
+      // if white line detected, stop driving and exit loop
       if (colorSensor.red() >= WHITE_THRESHOLD && colorSensor.green() >= WHITE_THRESHOLD && colorSensor.blue() >= WHITE_THRESHOLD) {
         robot.leftMotor.setPower(0);
         robot.rightMotor.setPower(0);
+
         /** TODO:
          * drive a little farther, then turn until hit white line
          * line follow until proximity sensor (or color sensor) detects that the beacon is close enough
@@ -103,11 +111,13 @@ public class BeaconAutoRed extends LinearOpMode {
          * turn and drive to second beacon
          * (repeat above)
          */
+
         telemetry.addData("White Detection Status", "true");
         telemetry.update();
         break;
       }
-      // send the info back to driver station using telemetry function.
+
+      // send the info back to driver station using telemetry
       telemetry.addData("RGB Red  ", colorSensor.red());
       telemetry.addData("RGB Green", colorSensor.green());
       telemetry.addData("RGB Blue ", colorSensor.blue());
