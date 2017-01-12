@@ -91,9 +91,6 @@ public class PushbotAutoDriveByEncoder_Linear_SC extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-
-        // don't automatically clear telemetry messages
-        telemetry.setAutoClear(false);
         
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
