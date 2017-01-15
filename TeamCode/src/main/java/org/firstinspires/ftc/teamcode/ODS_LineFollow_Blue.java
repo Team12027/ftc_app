@@ -98,12 +98,13 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         // Abort this loop is started or stopped.
         while (!(isStarted() || isStopRequested())) {
-
             // Display the light level while we are waiting to start
             telemetry.addData("Light Level", lightSensor.getLightDetected());
             telemetry.update();
             idle();
         }
+
+        waitForStart();
 
         // Start the robot moving forward, and then begin looking for a white line.
         robot.leftMotor.setPower(APPROACH_SPEED);
@@ -116,7 +117,7 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
             telemetry.addData("Light Level",  lightSensor.getLightDetected());
             telemetry.update();
         }
-        sleep(800);
+       // sleep(800);
 
         // begin line follow
         // TODO: change to while(distance > threshold)
