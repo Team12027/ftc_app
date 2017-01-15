@@ -69,8 +69,8 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
     //LightSensor             lightSensor;      // Primary LEGO Light sensor,
     OpticalDistanceSensor   lightSensor;   // Alternative MR ODS sensor
 
-    static final double     WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
-    static final double     APPROACH_SPEED  = 0.5;
+    static final double     WHITE_THRESHOLD = 0.1;  // spans between 0.1 - 0.5 from dark to light
+    static final double     APPROACH_SPEED  = 0.25;
 
     @Override
     public void runOpMode() {
@@ -117,19 +117,20 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
             telemetry.addData("Light Level",  lightSensor.getLightDetected());
             telemetry.update();
         }
-       // sleep(800);
 
         // begin line follow
         // TODO: change to while(distance > threshold)
         while (gamepad1.x == false) {
+            telemetry.addData("Light level", lightSensor.getLightDetected());
+            telemetry.update();
             double reading = lightSensor.getLightDetected();
             // white reading
             if (reading > WHITE_THRESHOLD) {
-                robot.leftMotor.setPower(APPROACH_SPEED*0.25);
+                robot.leftMotor.setPower(APPROACH_SPEED*0.5);
                 robot.rightMotor.setPower(APPROACH_SPEED);
             } else {
                 robot.leftMotor.setPower(APPROACH_SPEED);
-                robot.rightMotor.setPower(APPROACH_SPEED*0.25);
+                robot.rightMotor.setPower(APPROACH_SPEED*2);
             }
         }
 
