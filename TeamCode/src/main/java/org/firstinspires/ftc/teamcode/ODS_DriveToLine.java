@@ -71,8 +71,8 @@ public class ODS_DriveToLine extends LinearOpMode {
     //LightSensor             lightSensor;      // Primary LEGO Light sensor,
     OpticalDistanceSensor   lightSensor;   // Alternative MR ODS sensor
 
-    static final double     WHITE_THRESHOLD = 0.1;  // spans between 0.1 - 0.5 from dark to light
-    static final double     APPROACH_SPEED  = 0.25;
+    static final double     WHITE_THRESHOLD = 0.3;  // spans between 0.1 - 0.5 from dark to light
+    static final double     APPROACH_SPEED  = 0.6;
 
     @Override
     public void runOpMode() {
