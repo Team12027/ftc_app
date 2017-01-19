@@ -127,9 +127,9 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
             // white reading
             if (reading > WHITE_THRESHOLD) {
                 robot.leftMotor.setPower(0);
-                robot.rightMotor.setPower(0.2);
+                robot.rightMotor.setPower(0.3);
             } else {
-                robot.leftMotor.setPower(0.2);
+                robot.leftMotor.setPower(0.3);
                 robot.rightMotor.setPower(0);
             }
         }

@@ -55,15 +55,15 @@ import org.firstinspires.ftc.teamcode.HardwarePushbot_SC;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Pushbot: Teleop Tank", group="Pushbot")
+@TeleOp(name="Teleop", group="Pushbot")
 //@Disabled
 public class PushbotTeleopTank_Iterative_SC extends OpMode{
 
     /* Declare OpMode members. */
     HardwarePushbot_SC robot       = new HardwarePushbot_SC(); // use the class created to define a Pushbot's hardware
                                                          // could also use HardwarePushbotMatrix class.
-    double          clawOffset  = 0.0 ;                  // Servo mid position
-    final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
+   // double          clawOffset  = 0.0 ;                  // Servo mid position
+    //final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
 
 
     /*
@@ -100,6 +100,7 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
     public void loop() {
         double left;
         double right;
+        double intakePow;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
         left = -gamepad1.left_stick_y;
@@ -107,34 +108,52 @@ public class PushbotTeleopTank_Iterative_SC extends OpMode{
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        // Use gamepad left & right Bumpers to open and close the claw
-//        if (gamepad1.right_bumper)
-//            clawOffset += CLAW_SPEED;
-//        else if (gamepad1.left_bumper)
-//            clawOffset -= CLAW_SPEED;
+        if (gamepad2.left_bumper) {
+            robot.leftBeacon.setPosition(90);
+        } else {
+            robot.leftBeacon.setPosition(0);
+        }
+        if (gamepad2.right_bumper) {
+            robot.rightBeacon.setPosition(90);
+        }
+        else {
+            robot.rightBeacon.setPosition(0);
+        }
 
-        if (gamepad2.left_bumper)
-            robot.armMotor.setPower(robot.LIFT_UP_POWER);
-        else if (gamepad2.right_bumper)
-            robot.armMotor.setPower(robot.LIFT_DOWN_POWER);
-        else
-            robot.armMotor.setPower(0.0);
+        intakePow = -gamepad2.left_stick_y;
+        robot.intake.setPower(intakePow);
 
-        // Move both servos to new position.  Assume servos are mirror image of each other.
-        clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-        robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
-        robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
+        boolean flywheel_on = false;
+        if (gamepad2.x) {
+            flywheel_on = true;
+        }
+        if (gamepad2.b) {
+            flywheel_on = false;
+        }
 
-        // Use gamepad buttons to move the arm up (Y) and down (A)
-        if (gamepad2.y)
-            robot.liftMotor.setPower(robot.ARM_UP_POWER);
-        else if (gamepad2.a)
-            robot.liftMotor.setPower(robot.ARM_DOWN_POWER);
-        else
-            robot.liftMotor.setPower(0.0);
+        if (flywheel_on) {
+            robot.flywheel.setPower(0.95);
+        } else {
+            robot.flywheel.setPower(0);
+        }
+
+        boolean ballStopperUp = true;
+        if (gamepad2.y) {
+            ballStopperUp = true;
+        }
+        if (gamepad2.a) {
+            ballStopperUp = false;
+        }
+
+        if (ballStopperUp) {
+            robot.ballStopper.setPosition(0);
+        } else {
+            robot.ballStopper.setPosition(90);
+        }
+
+
 
         // Send telemetry message to signify robot running;
-        telemetry.addData("claw",  "Offset = %.2f", clawOffset);
         telemetry.addData("left",  "%.2f", left);
         telemetry.addData("right", "%.2f", right);
     }
