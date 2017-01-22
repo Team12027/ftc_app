@@ -31,7 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
@@ -44,9 +43,9 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name = "ODS Line Test", group = "Sensor")
+@TeleOp(name = "ODS ", group = "Sensor")
 //@Disabled
-public class ODS_LineFollow_Test extends LinearOpMode {
+public class ODS_Readings extends LinearOpMode {
 
   OpticalDistanceSensor odsSensor;  // Hardware Device Object
 
