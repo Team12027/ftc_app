@@ -98,26 +98,26 @@ public class Teleop extends LinearOpMode {
 //            clawOffset += CLAW_SPEED;
 //        else if (gamepad1.left_bumper)
 //            clawOffset -= CLAW_SPEED;
-
-            if (gamepad2.left_bumper)
-                robot.armMotor.setPower(robot.LIFT_UP_POWER);
-            else if (gamepad2.right_bumper)
-                robot.armMotor.setPower(robot.LIFT_DOWN_POWER);
-            else
-                robot.armMotor.setPower(0.0);
+//
+//            if (gamepad2.left_bumper)
+//                robot.armMotor.setPower(robot.LIFT_UP_POWER);
+//            else if (gamepad2.right_bumper)
+//                robot.armMotor.setPower(robot.LIFT_DOWN_POWER);
+//            else
+//                robot.armMotor.setPower(0.0);
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
 //            clawOffset = Range.clip(clawOffset, -0.5, 0.5);
 //            robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
 //            robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
-            // Use gamepad buttons to move the arm up (Y) and down (A)
-            if (gamepad2.y)
-                robot.liftMotor.setPower(robot.ARM_UP_POWER);
-            else if (gamepad2.a)
-                robot.liftMotor.setPower(robot.ARM_DOWN_POWER);
-            else
-                robot.liftMotor.setPower(0.0);
+//            // Use gamepad buttons to move the arm up (Y) and down (A)
+//            if (gamepad2.y)
+//                robot.liftMotor.setPower(robot.ARM_UP_POWER);
+//            else if (gamepad2.a)
+//                robot.liftMotor.setPower(robot.ARM_DOWN_POWER);
+//            else
+//                robot.liftMotor.setPower(0.0);
 
             // Send telemetry message to signify robot running;
 //            telemetry.addData("claw",  "Offset = %.2f", clawOffset);
