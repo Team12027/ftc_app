@@ -72,7 +72,9 @@ public class Teleop extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        robot.ballStopper.setPosition(60);
+        robot.ballStopper.setPosition(1);
+        robot.leftBeacon.setPosition(90);
+        robot.rightBeacon.setPosition(90);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
     }
@@ -142,9 +144,9 @@ public class Teleop extends OpMode{
         }
 
         if (ballStopperUp) {
-            robot.ballStopper.setPosition(60);
+            robot.ballStopper.setPosition(1);
         } else {
-            robot.ballStopper.setPosition(25);
+            robot.ballStopper.setPosition(0.4);
         }
 
         // Send telemetry message to signify robot running;
