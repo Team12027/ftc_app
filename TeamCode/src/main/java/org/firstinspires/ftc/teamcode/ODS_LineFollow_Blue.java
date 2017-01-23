@@ -50,7 +50,7 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
     OpticalDistanceSensor   lightSensor;   // Alternative MR ODS sensor
 
     static final double     WHITE_THRESHOLD = 0.3;  // spans between 0.1 - 0.5 from dark to light
-    static final double     APPROACH_SPEED  = 0.4;
+    static final double     APPROACH_SPEED  = 0.1;
 
     @Override
     public void runOpMode() {
@@ -107,9 +107,9 @@ public class ODS_LineFollow_Blue extends LinearOpMode {
             // white reading
             if (reading > WHITE_THRESHOLD) {
                 robot.leftMotor.setPower(0);
-                robot.rightMotor.setPower(0.3);
+                robot.rightMotor.setPower(0.1);
             } else {
-                robot.leftMotor.setPower(0.3);
+                robot.leftMotor.setPower(0.1);
                 robot.rightMotor.setPower(0);
             }
         }

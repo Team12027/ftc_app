@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
-@Autonomous(name="Line Follow Blue", group="Pushbot")
+@Autonomous(name="Line Follow Red", group="Pushbot")
 public class ODS_LineFollow_Red extends LinearOpMode {
 
     /* Declare OpMode members. */
