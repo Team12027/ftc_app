@@ -73,8 +73,8 @@ public class Teleop extends OpMode{
          */
         robot.init(hardwareMap);
         robot.ballStopper.setPosition(1);
-        robot.leftBeacon.setPosition(90);
-        robot.rightBeacon.setPosition(90);
+        robot.leftBeacon.setPosition(0);
+        robot.rightBeacon.setPosition(1);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
     }
@@ -109,15 +109,15 @@ public class Teleop extends OpMode{
         robot.rightMotor.setPower(right);
 
         if (gamepad2.left_bumper) {
-            robot.leftBeacon.setPosition(0);
+            robot.leftBeacon.setPosition(1);
         } else {
-            robot.leftBeacon.setPosition(90);
+            robot.leftBeacon.setPosition(0);
         }
         if (gamepad2.right_bumper) {
             robot.rightBeacon.setPosition(0);
         }
         else {
-            robot.rightBeacon.setPosition(90);
+            robot.rightBeacon.setPosition(1);
         }
 
         intakePow = -gamepad2.left_stick_y;
@@ -146,7 +146,7 @@ public class Teleop extends OpMode{
         if (ballStopperUp) {
             robot.ballStopper.setPosition(1);
         } else {
-            robot.ballStopper.setPosition(0.4);
+            robot.ballStopper.setPosition(0.45);
         }
 
         // Send telemetry message to signify robot running;

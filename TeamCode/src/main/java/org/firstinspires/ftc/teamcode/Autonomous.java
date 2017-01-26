@@ -32,12 +32,11 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.teamcode.HardwarePushbot_SC;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -66,12 +65,12 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="New Auto Blue", group="Pushbot")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous", group="Pushbot")
 //@Disabled
-public class NewAutoBlue extends LinearOpMode {
+public class Autonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
+    HardwarePushbot_SC        robot   = new HardwarePushbot_SC();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
@@ -98,6 +97,7 @@ public class NewAutoBlue extends LinearOpMode {
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
+        robot.ballStopper.setPosition(0.45);
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
@@ -116,16 +116,13 @@ public class NewAutoBlue extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED,  48,  48, 5.0);  // S1: Forward 48 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED,   15, -15, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, 40, 40, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
-        robot.armMotor.setPower(-0.9);
+        robot.flywheel.setPower(0.95);
+        encoderDrive(DRIVE_SPEED,  -12, -12, 7.0);
+        robot.intake.setPower(0.95);
         sleep(5000);
-        //robot.armMotor.setPower(0);
-
-        robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
-        robot.rightClaw.setPosition(0.0);
-        sleep(1000);     // pause for servos to move
+        robot.intake.setPower(0);
+        robot.flywheel.setPower(0);
+        encoderDrive(DRIVE_SPEED, -16, -16, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

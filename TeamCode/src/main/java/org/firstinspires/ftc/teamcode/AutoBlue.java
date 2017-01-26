@@ -66,9 +66,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="New Auto Blue", group="Pushbot")
+@Autonomous(name="Auto Blue", group="Pushbot")
 //@Disabled
-public class NewAutoBlue extends LinearOpMode {
+public class AutoBlue extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
@@ -92,7 +92,7 @@ public class NewAutoBlue extends LinearOpMode {
         robot.init(hardwareMap);
 
         // don't automatically clear telemetry messages
-       // telemetry.setAutoClear(false);
+        telemetry.setAutoClear(false);
         
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
@@ -121,7 +121,7 @@ public class NewAutoBlue extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, 40, 40, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
         robot.armMotor.setPower(-0.9);
         sleep(5000);
-        //robot.armMotor.setPower(0);
+        robot.armMotor.setPower(0);
 
         robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
         robot.rightClaw.setPosition(0.0);
