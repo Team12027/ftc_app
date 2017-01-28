@@ -61,8 +61,9 @@ public class Teleop extends OpMode{
     /* Declare OpMode members. */
     HardwarePushbot_SC robot       = new HardwarePushbot_SC(); // use the class created to define a Pushbot's hardware
     boolean ballStopperUp = true;
-    boolean flywheel_on = false;                                     // could also use HardwarePushbotMatrix class.
-
+   // boolean flywheel_on = false;                                     // could also use HardwarePushbotMatrix class.
+   // boolean flywheel_reverse = false;
+    int flywheel_status = 0; // 0 off, 1 forward, -1 reverse
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -124,18 +125,20 @@ public class Teleop extends OpMode{
         robot.intake.setPower(intakePow);
 
         if (gamepad2.x) {
-            flywheel_on = true;
+            flywheel_status = 1;
         }
         if (gamepad2.b) {
-            flywheel_on = false;
+            flywheel_status = 0;
         }
+        if (gamepad2.dpad_down) flywheel_status = -1;
 
-        if (flywheel_on) {
+        if (flywheel_status == 1) {
             robot.flywheel.setPower(-0.95);
+        } else if (flywheel_status == -1) {
+            robot.flywheel.setPower(0.95);
         } else {
             robot.flywheel.setPower(0);
         }
-
         if (gamepad2.y) {
             ballStopperUp = true;
         }

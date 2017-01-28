@@ -79,7 +79,7 @@ public class Autonomous extends LinearOpMode {
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.6;
-    static final double     TURN_SPEED              = 0.5;
+    // static final double     TURN_SPEED              = 0.5;
 
     @Override
     public void runOpMode() {
@@ -90,9 +90,6 @@ public class Autonomous extends LinearOpMode {
          */
         robot.init(hardwareMap);
 
-        // don't automatically clear telemetry messages
-       // telemetry.setAutoClear(false);
-        
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
@@ -116,13 +113,22 @@ public class Autonomous extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        robot.flywheel.setPower(0.95);
+        robot.flywheel.setPower(-1);
+        //sleep(300);
         encoderDrive(DRIVE_SPEED,  -12, -12, 7.0);
-        robot.intake.setPower(0.95);
+        //robot.intake.setPower(-1);
+        //sleep(300);
+        /*for (double i=0; i<=1;i+=0.05) {
+            robot.intake.setPower(i);
+            sleep(5);
+        }*/
+        robot.intake.setPower(1);
         sleep(5000);
         robot.intake.setPower(0);
         robot.flywheel.setPower(0);
-        encoderDrive(DRIVE_SPEED, -16, -16, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, -30, -30, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, 10, 10, 4.0);
+        encoderDrive(DRIVE_SPEED, -40, -40, 4.0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
