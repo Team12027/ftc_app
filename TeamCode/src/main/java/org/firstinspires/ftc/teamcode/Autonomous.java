@@ -129,7 +129,8 @@ public class Autonomous extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, -30, -30, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
         encoderDrive(DRIVE_SPEED, 10, 10, 4.0);
         encoderDrive(DRIVE_SPEED, -40, -40, 4.0);
-
+        encoderDrive(DRIVE_SPEED, 10, 10, 4.0);
+/
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
